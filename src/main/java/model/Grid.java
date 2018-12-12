@@ -95,9 +95,10 @@ public class Grid implements Iterable<Cell> {
         List<Cell> listOfNeighbours = new ArrayList<>();
         for (int row = -1; row <= 1; row++) {
             for (int col = -1; col <= 1; col++) {
-                if (row != 0 || col != 0) listOfNeighbours.add(getCell(rowIndex, columnIndex));
+                if (row != 0 || col != 0) listOfNeighbours.add(getCell(rowIndex+row, columnIndex+col));
             }
         }
+        //System.out.println(listOfNeighbours.size());
         return listOfNeighbours;
     }
 
@@ -106,6 +107,7 @@ public class Grid implements Iterable<Cell> {
         int alivesNeighbours = 0;
         for (Cell cellList : getNeighbours(rowIndex, columnIndex))
             if (cellList.isAlive()) alivesNeighbours++;
+        System.out.println("alives : " + alivesNeighbours);
         return alivesNeighbours;
     }
 
