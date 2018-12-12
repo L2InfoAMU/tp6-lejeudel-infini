@@ -160,7 +160,9 @@ public class Grid implements Iterable<Cell> {
      */
     // TODO: Écrire une version correcte de cette méthode.
     void clear() {
-
+        for(int row=0 ; row < getNumberOfRows() ; row++)
+            for(int col =0;col <getNumberOfColumns(); col++)
+                cells[row][col].setState(CellState.DEAD);
     }
 
     /**
@@ -171,6 +173,9 @@ public class Grid implements Iterable<Cell> {
      */
     // TODO: Écrire une version correcte de cette méthode.
     void randomGeneration(Random random) {
-
+        for(int row=0 ; row < getNumberOfRows() ; row++)
+            for(int col =0;col <getNumberOfColumns(); col++)
+                if (random.nextBoolean()) cells[row][col].setState(CellState.ALIVE);
+                else cells[row][col].setState(CellState.DEAD);
     }
 }
