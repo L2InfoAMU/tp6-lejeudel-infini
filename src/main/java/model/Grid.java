@@ -93,9 +93,9 @@ public class Grid implements Iterable<Cell> {
     // TODO: Écrire une version correcte de cette méthode.
     private List<Cell> getNeighbours(int rowIndex, int columnIndex) {
         List<Cell> listOfNeighbours = new ArrayList<>();
-        for (int row=-1 ; row<=1 ; row++) {
-            for (int col=-1 ; col<=1 ; col++) {
-                if (row!=0 || col!=0) listOfNeighbours.add(getCell(rowIndex,columnIndex));
+        for (int row = -1; row <= 1; row++) {
+            for (int col = -1; col <= 1; col++) {
+                if (row != 0 || col != 0) listOfNeighbours.add(getCell(rowIndex, columnIndex));
             }
         }
         return listOfNeighbours;
@@ -104,10 +104,8 @@ public class Grid implements Iterable<Cell> {
     // TODO: Écrire une version correcte de cette méthode.
     private int countAliveNeighbours(int rowIndex, int columnIndex) {
         int alivesNeighbours = 0;
-        List<Cell> listOfNeighbours = getNeighbours(rowIndex, columnIndex);
-        for (Cell cellList : listOfNeighbours) {
+        for (Cell cellList : getNeighbours(rowIndex, columnIndex))
             if (cellList.isAlive()) alivesNeighbours++;
-        }
         return alivesNeighbours;
     }
 
@@ -115,11 +113,11 @@ public class Grid implements Iterable<Cell> {
     private CellState calculateNextState(int rowIndex, int columnIndex) {
         int alivesNeighbours = countAliveNeighbours(rowIndex, columnIndex);
 
-        if (getCell(rowIndex,columnIndex).isAlive() && alivesNeighbours==3) return CellState.ALIVE;
-        if (!getCell(rowIndex,columnIndex).isAlive() && alivesNeighbours!=2 && alivesNeighbours!=3) return CellState.DEAD;
-        return getCell(rowIndex,columnIndex).getState();
+        if (getCell(rowIndex, columnIndex).isAlive() && alivesNeighbours == 3) return CellState.ALIVE;
+        if (!getCell(rowIndex, columnIndex).isAlive() && alivesNeighbours != 2 && alivesNeighbours != 3)
+            return CellState.DEAD;
+        return getCell(rowIndex, columnIndex).getState();
     }
-
 
 
     // TODO: Écrire une version correcte de cette méthode.
