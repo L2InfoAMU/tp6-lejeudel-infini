@@ -103,12 +103,21 @@ public class Grid implements Iterable<Cell> {
 
     // TODO: Écrire une version correcte de cette méthode.
     private int countAliveNeighbours(int rowIndex, int columnIndex) {
-        return 0;
+        int alivesNeighbours = 0;
+        List<Cell> listOfNeighbours = getNeighbours(rowIndex, columnIndex);
+        for (Cell cellList : listOfNeighbours) {
+            if (cellList.isAlive()) alivesNeighbours++;
+        }
+        return alivesNeighbours;
     }
 
     // TODO: Écrire une version correcte de cette méthode.
     private CellState calculateNextState(int rowIndex, int columnIndex) {
-        return null;
+        int alivesNeighbours = countAliveNeighbours(rowIndex, columnIndex);
+
+        if (getCell(rowIndex,columnIndex).isAlive() && alivesNeighbours==3) return CellState.ALIVE;
+        if (!getCell(rowIndex,columnIndex).isAlive() && alivesNeighbours!=2 && alivesNeighbours!=3) return CellState.DEAD;
+        return getCell(rowIndex,columnIndex).getState();
     }
 
 
